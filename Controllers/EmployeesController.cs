@@ -7,11 +7,18 @@ namespace CRUD.Controllers
 {
     public class EmployeesController : Controller
     {
-        ApplicationDbContext context = new ApplicationDbContext();
+        private readonly ApplicationDbContext _context;
+
+        public EmployeesController(ApplicationDbContext context)
+        {
+            _context = context;
+        }
+
         public IActionResult Index()
         {
             //AsNoTracking()==>لا تهتم بأي تعديل او تغيير او حفظ تغييرات ..فقط تستخدم لعرض الداتا 
-            var employees= context.Employees.AsNoTracking().ToList();
+            //High Performance
+            var employees= _context.Employees.AsNoTracking().ToList();
             return View(employees);
         }
         public IActionResult GoBack()
@@ -20,7 +27,7 @@ namespace CRUD.Controllers
         }
         public IActionResult Details(int id)
         {
-            var employees = context.Employees.Find(id);
+            var employees = _context.Employees.Find(id);
             return View(employees);
         }
         public IActionResult Create()
@@ -30,36 +37,36 @@ namespace CRUD.Controllers
         [HttpPost]
         public IActionResult Create(Employee employee)
         {
-            context.Employees.Add(employee);
-            context.SaveChanges();
+            _context.Employees.Add(employee);
+            _context.SaveChanges();
             return RedirectToAction("Index");
         }
         public IActionResult Update(int id)
         {
-            var employee = context.Employees.Find(id);
+            var employee = _context.Employees.Find(id);
             return View(employee);
         }
         [HttpPost]
         public IActionResult Update(Employee employee)//New employee's Data
         {
-            var currectEmployee =context.Employees.Find(employee.Id);
+            var currectEmployee = _context.Employees.Find(employee.Id);
             if (currectEmployee != null)
             {
                 currectEmployee.Name = employee.Name;
                 currectEmployee.Email = employee.Email;
                 currectEmployee.Password = employee.Password;
-                context.SaveChanges();
+                _context.SaveChanges();
             }
             return RedirectToAction("Index");
         }
         //حذف نهائي من الداتابيس
         public IActionResult Delete(int id)
         {
-            var employee = context.Employees.Find(id);
+            var employee = _context.Employees.Find(id);
             if (employee != null)
             {
-                context.Employees.Remove(employee);
-                context.SaveChanges();
+                _context.Employees.Remove(employee);
+                _context.SaveChanges();
             }
             return RedirectToAction("index");
         }
