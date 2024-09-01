@@ -1,6 +1,7 @@
 ﻿using CRUD.Data;
 using CRUD.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace CRUD.Controllers
 {
@@ -9,7 +10,8 @@ namespace CRUD.Controllers
         ApplicationDbContext context = new ApplicationDbContext();
         public IActionResult Index()
         {
-            var employees= context.Employees.ToList();
+            //AsNoTracking()==>لا تهتم بأي تعديل او تغيير او حفظ تغييرات ..فقط تستخدم لعرض الداتا 
+            var employees= context.Employees.AsNoTracking().ToList();
             return View(employees);
         }
         public IActionResult GoBack()

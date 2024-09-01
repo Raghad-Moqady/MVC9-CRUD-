@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@model Employee
+<!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -8,20 +9,20 @@
     <h1 class=" text-center">Create New Employee</h1>
     <form asp-controller="Employees" asp-action="Create">
         <div class="form-group mb-3 ">
-            <label for="name">Name</label>
-            <input type="text" class="form-control" id="name" placeholder="Enter Name" name="Name">
+            <label  asp-for="Name"> </label>
+            <input asp-for="Name"  class="form-control" placeholder="Enter Name" >
         </div>
         <div class="form-group mb-3 ">
-            <label for="email">Email</label>
-            <input type="email" class="form-control" id="email" placeholder="Enter Email" name="Email">
+            <label asp-for="Email"  ></label>
+            <input asp-for="Email"  class="form-control"  placeholder="Enter Email"  >
         </div>
         <div class="form-group mb-3  ">
-            <label for="password">Password</label>
-            <input type="password" class="form-control" id="password" placeholder="Enter Your Password" name="Password">
+            <label asp-for="Password"></label>
+            <input asp-for="Password" class="form-control" id="password" placeholder="Enter Your Password" >
         </div>
         <button type="submit" class="btn btn-success">Submit</button>
     </form>
-    <a class="btn btn-success mt-3" href="/Employees/GoBack">Go Back</a>
+    <a class="btn btn-success mt-3" asp-controller="Employees" asp-action="GoBack">Go Back</a>
 </body>
 </html>
 

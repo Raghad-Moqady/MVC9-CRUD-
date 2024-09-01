@@ -1,4 +1,4 @@
-﻿@model List<Employee>
+﻿@model IEnumerable<Employee>
 
 <!DOCTYPE html>
 <html>
@@ -12,9 +12,9 @@
     <table class="table table-striped">
         <thead>
             <tr>
-                <th scope="col">#</th>
-                <th scope="col">Name</th>
-                <th scope="col">Email</th>
+                <th scope="col">@Html.DisplayNameFor(emp=> emp.Id)</th>
+                <th scope="col">@Html.DisplayNameFor(emp => emp.Name)</th>
+                <th scope="col">@Html.DisplayNameFor(emp => emp.Email)</th>
             </tr>
         </thead>
         <tbody>
