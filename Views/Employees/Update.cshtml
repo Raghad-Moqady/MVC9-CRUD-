@@ -1,0 +1,31 @@
+﻿
+
+@model Employee
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Update</title>
+</head>
+<body>
+    <h1 class=" text-center">Update</h1>
+    <form asp-controller="Employees" asp-action="Update">
+        <input type="hidden" value=@Model.Id />
+        <div class="form-group mb-3 ">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" name="Name" value=@Model.Name>
+        </div>
+        <div class="form-group mb-3 ">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email"   name="Email" value=@Model.Email>
+        </div>
+        <div class="form-group mb-3  ">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password"  name="Password" value=@Model.Password>
+        </div>
+        <button type="submit" class="btn btn-success">Save Changes</button>
+    </form>
+    <a class="btn btn-success mt-3 " href="/Employees/GoBack">Go Back</a>
+</body>
+</html>
+

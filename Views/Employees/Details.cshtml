@@ -1,0 +1,34 @@
+﻿@model Employee
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <h1 class=" text-center">Details</h1>
+    <a asp-controller="Employees" asp-action="Create" class="btn btn-success">Creat New Employee</a>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Password</th>
+            </tr>
+        </thead>
+        <tbody>
+                <tr>
+                    <th scope="row">@Model.Id</th>
+                    <td>@Model.Name</td>
+                    <td>@Model.Email</td>
+                    <td>@Model.Password</td>
+                </tr>
+            
+        </tbody>
+    </table>
+    <a class="btn btn-success mt-3 " href="/Employees/GoBack">Go Back</a>
+
+</body>
+</html>
